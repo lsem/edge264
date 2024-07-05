@@ -4,4 +4,6 @@
 !edge264*.h
 !LICENSE_BSD.txt
 !Makefile
+!CMakeLists.txt
 !*.md
+

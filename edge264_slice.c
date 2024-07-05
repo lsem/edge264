@@ -1,5 +1,20 @@
 #include "edge264_internal.h"
 
+#if 0//defined(__SSSE3__) && !defined(__clang__) && SIZE_BIT == 64
+	register size_t rbsp_reg0 asm("r14");
+	register size_t rbsp_reg1 asm("r15");
+	#define codIRange rbsp_reg0
+	#define codIOffset rbsp_reg1
+	#define lsb_cache rbsp_reg0
+	#define msb_cache rbsp_reg1
+#else
+	#define codIRange ctx->_codIRange
+	#define codIOffset ctx->_codIOffset
+	#define lsb_cache ctx->_lsb_cache
+	#define msb_cache ctx->_msb_cache
+#endif
+
+
 // This file is compiled twice: once for CAVLC and once for CABAC
 #undef CAFUNC
 #undef CACALL

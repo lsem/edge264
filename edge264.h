@@ -30,6 +30,10 @@
 
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct Edge264_stream {
 	// These fields must be set prior to decoding.
 	const uint8_t *CPB; // should always point to a NAL unit (after the 001 prefix)
@@ -56,5 +60,10 @@ int Edge264_decode_NAL(Edge264_stream *s);
 int Edge264_get_frame(Edge264_stream *s, int drain);
 void Edge264_free(Edge264_stream **s);
 const uint8_t *Edge264_find_start_code(int n, const uint8_t *CPB, const uint8_t *end);
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
+  
 
 #endif
